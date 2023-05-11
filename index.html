@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" rel="stylesheet">
     <title>Blackstone</title>
 </head>
 <body>
-    <h1>Blackstone</h1>
+    <h1 class="header">Blackstone</h1>
     Blackstone is a programming language designed for the MCDiamondFire minecraft server.<br>
+    <br>
     Hello world example:
-    <pre>
-        <code>
+    <pre class="code">
 event player.join {
+    // Select object model in action.
+    type player as event.default;
     player.sendMessage("Hello world!");
-}
-        </code>
-      </pre>
+}</pre>
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="highlighter.js"></script>
 </body>
 </html>
