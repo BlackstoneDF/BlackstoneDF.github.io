@@ -14,9 +14,8 @@
     Hello world example:
     <pre class="code">
 event player.join {
-    // Select object model in action.
-    type player as event.default;
     player.sendMessage("Hello world!");
+    plot.setBlock(loc(10, 20, 30), item(diamond_block));
 }</pre>
     
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
