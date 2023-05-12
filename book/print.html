@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Blackstone Programming Language</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="basics.html"><strong aria-hidden="true">1.</strong> Ch 1: Basics</a></li><li class="chapter-item expanded "><a href="actions_and_events.html"><strong aria-hidden="true">2.</strong> Ch 2: Actions and Events</a></li><li class="chapter-item expanded "><a href="selectors.html"><strong aria-hidden="true">3.</strong> Ch 3: Selectors</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Blackstone Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="what-is-blackstone"><a class="header" href="#what-is-blackstone">What is Blackstone?</a></h2>
+<p>Blackstone is a programming language designed by the DF community, for the DF community. It is intended to be used in DF plots with high amounts of code. Blackstone aims to change how DF code is written by adding new features on top of it. These features include:</p>
+<ul>
+<li>Function Parameters</li>
+<li>Object-Oriented Programming</li>
+<li>Enums</li>
+<li>Select-Object Model
+And more!
+Read on in the wiki to learn more about Blackstone.</li>
+</ul>
+<h2 id="technical-details"><a class="header" href="#technical-details">Technical Details</a></h2>
+<p>Here are some nice technical details to know:</p>
+<p>Blackstone may occasionally &quot;panic&quot;. This is because it is written in Rust. 
+If your Blackstone compiler panics, send us the following on the Discord:</p>
+<ul>
+<li>What code you gave it</li>
+<li>The panic error &amp; stacktrace.</li>
+</ul>
+<p>If you believe an error is not helpful, please let us know on the Discord. We want to make Blackstone as friendly of a programming language as possible for developers.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="actions"><a class="header" href="#actions">Actions</a></h2>
+<p>Actions are called like functions.
+Example:</p>
+<pre><code>// Calling a player action.
+player.sendMessage(&quot;Hello!&quot;);
+</code></pre>
+<p>Actions do not have to be exact maps to DF actions. Here are some rule of thumbs to making sure your action is valid:</p>
+<ul>
+<li>It should be similar to a DF action on the sign.</li>
+<li>The first letter does not have to be uppercase. It can be lowercase to fit with camelCase in Blackstone.</li>
+<li>There are some aliases available! (e.g <code>sendMessageSequence</code> =&gt; <code>SendMessageSeq</code> on the sign)</li>
+</ul>
+<h2 id="events"><a class="header" href="#events">Events</a></h2>
+<p>Events have special syntax that allow you to define them.
+Example:</p>
+<pre><code>event player.join {
+  // code here...
+}
+</code></pre>
+<p>Lines of code in event blocks are seperated by semicolons (<code>;</code>). The specifier for what event (join, leave, etc) has similar rules to the actions.</p>
+<div style="break-before: page; page-break-before: always;"></div><p>Currently, there are 3 primary selectors you will call methods from on Blackstone.
+These selectors currently work for:</p>
+<ul>
+<li>if statements</li>
+<li>actions</li>
+<li>events</li>
+</ul>
+<h2 id="player"><a class="header" href="#player">Player</a></h2>
+<p>This selector encompasses players. </p>
+<p>Example:</p>
+<pre><code>event player.join {
+  player.sendMessage(&quot;Hello!&quot;);
+}
+</code></pre>
+<h2 id="entity"><a class="header" href="#entity">Entity</a></h2>
+<p>This selector encompasses mobs and entitities.</p>
+<p>Example:</p>
+<pre><code>event entity.entityDmg {
+  plot.cancelEvent();
+}
+</code></pre>
+<h2 id="plot"><a class="header" href="#plot">Plot</a></h2>
+<p>This selector - seen in the example above - handles game actions &amp; if game statements.
+Example:</p>
+<pre><code>event player.onJoin {
+  plot.setBlock(loc(10, 100, 10), item(stone))
+}
+</code></pre>
+<h2 id="selection"><a class="header" href="#selection">Selection</a></h2>
+<p><strong>Warning: This feature is not implemented yet!</strong>
+This allows you to use the current selection. You will have to specify what action you're doing, though.
+Example:</p>
+<pre><code>event player.onJoin {
+  local name = &quot;%default&quot;;
+  select New()
+    -&gt;AllPlayers() {
+    selection.sendMessage(&quot;%var(name) has joined!&quot;);
+  }
+}
+</code></pre>
+<h2 id="custom-selectors"><a class="header" href="#custom-selectors">Custom Selectors</a></h2>
+<p><strong>Warning: This feature is not implemented yet!</strong></p>
+<p>You can define your own selectors using the <code>type</code> keyword.
+Example:</p>
+<pre><code>type victim as event.victim;
+</code></pre>
+<p>After the <code>as</code>, you can specify one of these:</p>
+<ul>
+<li><code>event.default</code> The default in the event.</li>
+<li><code>event.victim</code> The victim in damage events.</li>
+<li><code>event.killer</code> The killer in death events.</li>
+<li><code>event.damager</code> The damager in damage events.</li>
+<li><code>event.entity</code> Get the primary entity in the event.</li>
+<li><code>event.projectile</code> Get the projectile in the event.</li>
+<li><code>event.shooter</code> Get the shooter in the event.</li>
+</ul>
+<p>Note you have to use the <code>type</code> keyword to define these.</p>
+<pre><code>✅ type victim as event.victim; victim.sendMessage(&quot;rip&quot;);
+❌ event.victim.sendMessage(&quot;rip&quot;);
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
