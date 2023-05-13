@@ -46,6 +46,7 @@ event player.onJoin {
   }
 }
 ```
+Using the `selection` selector outside of a select block will throw a compile error.
 ## Custom Selectors
 **Warning: This feature is not implemented yet!**
 
