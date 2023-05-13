@@ -19,7 +19,7 @@ $ touch main.bls
 ```
 This will create a new file in the scripts directory named `main.bls`. This is where your code will be placed. Add the following code:
 ```
-event player.join() {
+event player.join {
     player.sendMessage("Hello from Blackstone!");
 }
 ```
