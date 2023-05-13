@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Selectors - Blackstone Programming Language</title>
+        <title>Diamond Fire - Blackstone Programming Language</title>
 
 
         <!-- Custom HTML head -->
@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -35,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="basics.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li class="chapter-item expanded "><a href="actions_and_events.html"><strong aria-hidden="true">2.</strong> Actions and Events</a></li><li class="chapter-item expanded "><a href="selectors.html" class="active"><strong aria-hidden="true">3.</strong> Selectors</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../basics.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ch1/hello_shulker.html"><strong aria-hidden="true">1.1.</strong> Hello, Shulker!</a></li><li class="chapter-item expanded "><a href="../ch1/diamond_fire.html" class="active"><strong aria-hidden="true">1.2.</strong> Diamond Fire</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -115,7 +115,7 @@
                     <h1 class="menu-title">Blackstone Programming Language</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -144,79 +144,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>Currently, there are 3 primary selectors you will call methods from on Blackstone.
-These selectors currently work for:</p>
-<ul>
-<li>if statements</li>
-<li>actions</li>
-<li>events</li>
-</ul>
-<h2 id="player"><a class="header" href="#player">Player</a></h2>
-<p>This selector encompasses players. </p>
-<p>Example:</p>
-<pre><code>event player.join {
-  player.sendMessage(&quot;Hello!&quot;);
-}
-</code></pre>
-<h2 id="entity"><a class="header" href="#entity">Entity</a></h2>
-<p>This selector encompasses mobs and entitities.</p>
-<p>Example:</p>
-<pre><code>event entity.entityDmg {
-  plot.cancelEvent();
-}
-</code></pre>
-<h2 id="plot"><a class="header" href="#plot">Plot</a></h2>
-<p>This selector - seen in the example above - handles game actions &amp; if game statements.
-Example:</p>
-<pre><code>event player.onJoin {
-  plot.setBlock(loc(10, 100, 10), item(stone))
-}
-</code></pre>
-<h2 id="selection"><a class="header" href="#selection">Selection</a></h2>
-<p><strong>Warning: This feature is not implemented yet!</strong>
-This allows you to use the current selection. You will have to specify what action you're doing, though.
-Example:</p>
-<pre><code>event player.onJoin {
-  local name = &quot;%default&quot;;
-  select new::nil()
-    -&gt;allPlayers::nil() {
-    selection.sendMessage(&quot;%var(name) has joined!&quot;);
-  }
-}
-</code></pre>
-<p>Using the <code>selection</code> selector outside of a select block will throw a compile error.
-Notice the <code>nil</code> in the select operators. In the first example, the <code>New</code> and <code>AllPlayers</code> are the primary actions, while the <code>nil</code>s are sub-actions. For example:</p>
-<pre><code>// ...
-select while::isGrounded()
-// ...
-</code></pre>
-<p>will translate to a repeat block that runs while an entity is grounded.</p>
-<h2 id="custom-selectors"><a class="header" href="#custom-selectors">Custom Selectors</a></h2>
-<p><strong>Warning: This feature is not implemented yet!</strong></p>
-<p>You can define your own selectors using the <code>type</code> keyword.
-Example:</p>
-<pre><code>type victim as event.victim;
-</code></pre>
-<p>After the <code>as</code>, you can specify one of these:</p>
-<ul>
-<li><code>event.default</code> The default in the event.</li>
-<li><code>event.victim</code> The victim in damage events.</li>
-<li><code>event.killer</code> The killer in death events.</li>
-<li><code>event.damager</code> The damager in damage events.</li>
-<li><code>event.entity</code> Get the primary entity in the event.</li>
-<li><code>event.projectile</code> Get the projectile in the event.</li>
-<li><code>event.shooter</code> Get the shooter in the event.</li>
-</ul>
-<p>Note you have to use the <code>type</code> keyword to define these.</p>
-<pre><code>✅ type victim as event.victim; victim.sendMessage(&quot;rip&quot;);
-❌ event.victim.sendMessage(&quot;rip&quot;);
-</code></pre>
+                        <h1 id="diamond-fire"><a class="header" href="#diamond-fire">Diamond Fire</a></h1>
+<p>Now we will recreate the DiamondFire tutorial in Blackstone.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="actions_and_events.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../ch1/hello_shulker.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -227,7 +162,7 @@ Example:</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="actions_and_events.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../ch1/hello_shulker.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
@@ -235,6 +170,22 @@ Example:</p>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
@@ -243,13 +194,13 @@ Example:</p>
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 

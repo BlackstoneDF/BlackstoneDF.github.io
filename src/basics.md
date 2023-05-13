@@ -11,7 +11,7 @@ Read further to learn more about Blackstone.
 ## Technical Details
 Here are some nice technical details to know:
 
-Blackstone may occasionally "panic". This is because it is written in Rust. 
+Blackstone may occasionally "panic". This is because it is written in Rust!
 If your Blackstone compiler panics, send us the following on the Discord:
 - What code you gave it
 - The panic error & stacktrace.

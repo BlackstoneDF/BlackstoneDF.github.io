@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="basics.html" class="active"><strong aria-hidden="true">1.</strong> Basics</a></li><li class="chapter-item expanded "><a href="actions_and_events.html"><strong aria-hidden="true">2.</strong> Actions and Events</a></li><li class="chapter-item expanded "><a href="selectors.html"><strong aria-hidden="true">3.</strong> Selectors</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="basics.html" class="active"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch1/hello_shulker.html"><strong aria-hidden="true">1.1.</strong> Hello, Shulker!</a></li><li class="chapter-item expanded "><a href="ch1/diamond_fire.html"><strong aria-hidden="true">1.2.</strong> Diamond Fire</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -156,7 +156,7 @@
 Read further to learn more about Blackstone.</p>
 <h2 id="technical-details"><a class="header" href="#technical-details">Technical Details</a></h2>
 <p>Here are some nice technical details to know:</p>
-<p>Blackstone may occasionally &quot;panic&quot;. This is because it is written in Rust. 
+<p>Blackstone may occasionally &quot;panic&quot;. This is because it is written in Rust!
 If your Blackstone compiler panics, send us the following on the Discord:</p>
 <ul>
 <li>What code you gave it</li>
@@ -169,7 +169,7 @@ If your Blackstone compiler panics, send us the following on the Discord:</p>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
-                            <a rel="next" href="actions_and_events.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch1/hello_shulker.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -180,13 +180,29 @@ If your Blackstone compiler panics, send us the following on the Discord:</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                    <a rel="next" href="actions_and_events.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch1/hello_shulker.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

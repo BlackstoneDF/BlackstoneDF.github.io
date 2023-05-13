@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Actions and Events - Blackstone Programming Language</title>
+        <title>Hello, Shulker! - Blackstone Programming Language</title>
 
 
         <!-- Custom HTML head -->
@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -35,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="basics.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li class="chapter-item expanded "><a href="actions_and_events.html" class="active"><strong aria-hidden="true">2.</strong> Actions and Events</a></li><li class="chapter-item expanded "><a href="selectors.html"><strong aria-hidden="true">3.</strong> Selectors</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../basics.html"><strong aria-hidden="true">1.</strong> Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ch1/hello_shulker.html" class="active"><strong aria-hidden="true">1.1.</strong> Hello, Shulker!</a></li><li class="chapter-item expanded "><a href="../ch1/diamond_fire.html"><strong aria-hidden="true">1.2.</strong> Diamond Fire</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -115,7 +115,7 @@
                     <h1 class="menu-title">Blackstone Programming Language</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -144,65 +144,65 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="actions"><a class="header" href="#actions">Actions</a></h2>
-<p>Actions are called like functions.
-Example:</p>
-<pre><code>// Calling a player action.
-player.sendMessage(&quot;Hello!&quot;);
+                        <h1 id="hello-blackstone"><a class="header" href="#hello-blackstone">Hello, Blackstone!</a></h1>
+<p>The first thing you will want to do is create a new Blackstone project.</p>
+<pre><code class="language-shell">$ bl init
 </code></pre>
-<p>Actions do not have to be exact maps to DF actions. Here are some rule of thumbs to making sure your action is valid:</p>
+<p>This will initialize a new Blackstone project with some files:</p>
 <ul>
-<li>It should be similar to a DF action on the sign.</li>
-<li>The first letter does not have to be uppercase. It can be lowercase to fit with camelCase in Blackstone.</li>
-<li>There are some aliases available! (e.g <code>sendMessageSequence</code> =&gt; <code>SendMessageSeq</code> on the sign)</li>
+<li><code>Blackstone.toml</code></li>
+<li><code>/scripts</code> directory
+Blackstone.toml will hold the metadeta of your project, and will look something like this:</li>
 </ul>
-<p>A list of valid aliases:</p>
-<ul>
-<li><code>sendMessageSequence</code> =&gt; <code>SendMessageSeq</code></li>
-</ul>
-<p>If your action is not present, the compiler will warn you <strong>(Unimplemented)</strong> stating that the action is not valid.</p>
-<h2 id="events"><a class="header" href="#events">Events</a></h2>
-<p>Events have special syntax that allow you to define them.
-Example:</p>
+<pre><code class="language-toml">[box]
+name = &quot;unnamed&quot;
+author = &quot;unnamed&quot;
+</code></pre>
+<p>Don't worry too much about the <code>Blackstone.toml</code> right now. Go into the <code>/scripts</code> directory and create a new file.</p>
+<pre><code class="language-shell">$ cd scripts
+$ touch main.bls
+</code></pre>
+<p>This will create a new file in the scripts directory named <code>main.bls</code>. This is where your code will be placed. Add the following code:</p>
+<pre><code>event player.join() {
+    player.sendMessage(&quot;Hello from Blackstone!&quot;);
+}
+</code></pre>
+<p>Next, you will want to compile the code. It will automatically send through Recode.</p>
+<pre><code class="language-shell">$ bl build
+</code></pre>
+<p>Wait a moment and it should appear ingame for you to place. And now, you just built your first program in Blackstone! Congratulations!</p>
+<h1 id="code-explanation"><a class="header" href="#code-explanation">Code Explanation</a></h1>
+<p>Let's review exactly what is going on in this example.</p>
+<pre><code>event
+</code></pre>
+<p>Right off the bat, we are telling the compiler we want to create an event. We specify that it is a player event with the Join event with</p>
+<pre><code>event player.join
+</code></pre>
+<p>However, what code should go inside of the event? We will use brackets to denote a series of code blocks.</p>
 <pre><code>event player.join {
-  // code here...
-}
-</code></pre>
-<p>Lines of code in event blocks are seperated by semicolons (<code>;</code>). The specifier for what event (join, leave, etc) has the same rules as the actions.</p>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<p>Functions are defined using the <code>func</code> keyword.
-Example:</p>
-<pre><code>func myFunction() {
 
 }
 </code></pre>
-<p>In DF, this will translate to a new line of code with a function. It is a good rule of thumb to keep one function per file, with some exceptions.</p>
-<p>You can also specify arguments in functions.</p>
-<pre><code>func myFunction(arg1: text) {
-  // ...
-}
+<p>And now, we need to send a message with &quot;Hello, world!&quot; inside. We want to specify that we are doing this action on the player and that we will send a message.</p>
+<pre><code>player.sendMessage
 </code></pre>
-<p>This will require the user to pass in a text into the function. Not doing so, or passing in the incorrect arguments, will result in a warning <strong>(Unimplemented)</strong>.</p>
-<h2 id="processes"><a class="header" href="#processes">Processes</a></h2>
-<p>Similar to functions, processes are defined with the <code>proc</code> keyword.
-Example:</p>
-<pre><code>proc myProcess() {
-
-}
-``
-This will translate to a new line of code with a process.
-
+<p>To specify what arguments an action has, you will want to add a Text to the action. We can do this by wrapping our text in quotes (&quot;).</p>
+<pre><code>&quot;Hello world!&quot;
 </code></pre>
+<p>Now, let's combine them into one action.</p>
+<pre><code>player.sendMessage(&quot;Hello world!);
+</code></pre>
+<p>Notice the semicolon. Semicolons dictate whenever there's a new action. Not using semicolons will result in a syntax error, and the compiler will be unable to parse your code. If your familiar with programming on DF, you will notice that all of the actions (sendMessage, giveItems) are just like DF's actions but in camel case. This is intentional to keep the code familiar and usuable. But after all of this, you now have a working program. Let's do something more advanced.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="basics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../basics.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="selectors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../ch1/diamond_fire.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -212,17 +212,33 @@ This will translate to a new line of code with a process.
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="basics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../basics.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="selectors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../ch1/diamond_fire.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
@@ -231,13 +247,13 @@ This will translate to a new line of code with a process.
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
