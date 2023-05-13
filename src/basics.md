@@ -4,8 +4,9 @@ Blackstone is a programming language designed by the DF community, for the DF co
 - Object-Oriented Programming
 - Enums
 - Select-Object Model
+
 And more!
-Read on in the wiki to learn more about Blackstone.
+Read further to learn more about Blackstone.
 
 ## Technical Details
 Here are some nice technical details to know:

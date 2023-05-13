@@ -40,13 +40,20 @@ Example:
 ```
 event player.onJoin {
   local name = "%default";
-  select New()
-    ->AllPlayers() {
+  select new::nil()
+    ->allPlayers::nil() {
     selection.sendMessage("%var(name) has joined!");
   }
 }
 ```
 Using the `selection` selector outside of a select block will throw a compile error.
+Notice the `nil` in the select operators. In the first example, the `New` and `AllPlayers` are the primary actions, while the `nil`s are sub-actions. For example:
+```
+// ...
+select while::isGrounded()
+// ...
+```
+will translate to a repeat block that runs while an entity is grounded.
 ## Custom Selectors
 **Warning: This feature is not implemented yet!**
 
